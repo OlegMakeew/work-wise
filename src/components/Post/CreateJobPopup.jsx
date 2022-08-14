@@ -2,19 +2,43 @@ import { Timestamp } from 'firebase/firestore';
 import React, { useState } from 'react'
 import { addDocument } from '../../hooks/useDocument';
 
+const styles = {
+	tag: {
+	display: "inline-block",
+	color: "#b2b2b2",
+	fontSize: "14px",
+	backgroundColor: "#f1f1f1",
+	borderRadius: "30px",
+	padding: "7px 15px",
+	fontWeight: "500",
+	},
+};
+
 export const CreateJobPopup = () => {
 	const [job, setJob] = useState({
 		title: "",
 		role: "",
-		skills: "",
+		skills: [],
 		rate: "",
-		typeJob: "",
+		jobType: "",
 		description: "",
 	});
 
+	const [tempSkill, setTempSkill] = useState("");
+
 	const handleChange = (event) => {
-		setJob(prev => ({...prev, [event.target.name]: event.target.value}))
+		setJob((prev) => ({...prev, [event.target.name]: event.target.value}))
 	};
+
+	const handleChangeSkills = (event) => {
+		if (event.key === "Enter") {
+			setJob((prev) => ({...prev, skills: [...job.skills, event.target.value]}));
+			setTempSkill("");
+			return;
+		}
+		setTempSkill(event.target.value);
+		return;
+	}
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
@@ -47,15 +71,22 @@ export const CreateJobPopup = () => {
 							<div className="col-lg-12">
 								<div className="inp-field">
 									<select onChange={handleChange}  name='role'>
-										<option>Category</option>
-										<option>Category 1</option>
-										<option>Category 2</option>
-										<option>Category 3</option>
+										<option value="Разработчик"> Разработчик </option>
+										<option value="Дизайнер"> Дизайнер </option>
+										<option value="Швея"> Швея </option>
+										<option value="СММ"> СММ </option>
 									</select>
 								</div>
 							</div>
 							<div className="col-lg-12">
-								<input onChange={handleChange}  type="text" name="skills" placeholder="Skills" />
+								<input value={tempSkill} onChange={handleChangeSkills} onKeyDown={handleChangeSkills} type="text" name="skills" placeholder="Skills" />
+								<ul className="skill-tags">
+									{Array.isArray(job.skills) && job.skills.map((skill) => (
+										<li>
+											<span style={styles.tag} >{skill}</span>
+										</li>
+									))}
+								</ul>
 							</div>
 							<div className="col-lg-6">
 								<div className="price-br">
@@ -65,7 +96,7 @@ export const CreateJobPopup = () => {
 							</div>
 							<div className="col-lg-6">
 								<div className="inp-field">
-									<select onChange={handleChange}  name='typeJob'>
+									<select onChange={handleChange}  name='jobType'>
 										<option>Full Time</option>
 										<option>Half time</option>
 									</select>
