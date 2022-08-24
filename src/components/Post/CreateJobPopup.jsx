@@ -82,7 +82,7 @@ export const CreateJobPopup = () => {
 								</div>
 							</div>
 							<div className="col-lg-12">
-								<input value={tempSkill} onChange={handleChangeSkills} onKeyDown={handleChangeSkills} type="text" name="skills" placeholder="Skills" />
+								<input value={tempSkill} onChange={handleChangeSkills} onKeyDown={handleChangeSkills} type="text" name="skills" placeholder="Skills" required />
 								{Array.isArray(job.tags) && job.tags.length > 0 && (
 									<ul className="skill-tags">
 									{job.tags.map((tag) => (
@@ -95,7 +95,7 @@ export const CreateJobPopup = () => {
 							</div>
 							<div className="col-lg-6">
 								<div className="price-br">
-									<input onChange={handleChange}  type="text" name="rate" placeholder="Price" />
+									<input onChange={handleChange}  type="text" name="rate" placeholder="Price" required />
 									<i className="la la-dollar"></i>
 								</div>
 							</div>
@@ -108,7 +108,7 @@ export const CreateJobPopup = () => {
 								</div>
 							</div>
 							<div className="col-lg-12">
-								<textarea onChange={handleChange}  name="description" placeholder="Description"></textarea>
+								<textarea onChange={handleChange}  name="description" placeholder="Description" required></textarea>
 							</div>
 							<div className="col-lg-12">
 								<ul>
