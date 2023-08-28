@@ -9,6 +9,7 @@ export default defineConfig({
     alias: [
       { find: "@", replacement: path.resolve(__dirname, "src") },
       { find: "assets", replacement: path.resolve(__dirname, "src/assets") },
+      { find: "images", replacement: path.resolve(__dirname, "src/assets/images") },
       { find: "components", replacement: path.resolve(__dirname, "src/components") },
       { find: "pages", replacement: path.resolve(__dirname, "src/pages") },
       { find: "hooks", replacement: path.resolve(__dirname, "src/hooks") },
