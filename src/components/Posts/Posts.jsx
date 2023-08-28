@@ -3,13 +3,14 @@ import { getCollection } from "../../hooks/getCollection";
 import roleIcon from "assets/images/icon8.png";
 import locationIcon from "assets/images/icon9.png";
 import likeIcon from "assets/images/liked-img.png";
+import { Box, CircularProgress } from "@mui/material";
 
 export const Posts = () => {
   const { documents: posts, error } = getCollection("posts");
   return (
     <div className="posts-section">
       {error && <div className="error">{error}</div>}
-      {posts.length > 0 &&
+      {posts.length > 0 ? (
         posts.map((post) => (
           <div className="post-bar" key={post.id}>
             <div className="post_topbar">
@@ -134,7 +135,12 @@ export const Posts = () => {
               </a>
             </div>
           </div>
-        ))}
+        ))
+      ) : (
+        <Box py={4} display="flex" alignItems="center" justifyContent="center">
+          <CircularProgress />
+        </Box>
+      )}
     </div>
   );
 };

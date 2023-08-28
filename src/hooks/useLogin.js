@@ -2,12 +2,17 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { useState } from "react";
 import { auth, firestore } from "../firebase/config";
-import { useAuthContext } from "./useAuthContext";
+
+const SET_USER = "SET_USER";
+
+const setUser = (user) => ({
+  type: SET_USER,
+  payload: user,
+});
 
 export const useLogin = () => {
   const [error, setError] = useState(null);
   const [isPending, setIsPending] = useState(false);
-  const { dispatch } = useAuthContext();
 
   const login = async (email, password) => {
     setError(null);
@@ -19,7 +24,6 @@ export const useLogin = () => {
       const usersRef = doc(firestore, "users", user.uid);
 
       await setDoc(usersRef, { isOnline: true }, { merge: true });
-      await dispatch({ type: "LOGIN", payload: user });
 
       setIsPending(false);
       setError(null);

@@ -1,11 +1,12 @@
 import { Box } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
-import React, { useState } from "react";
-import { Login } from "../../components/Login/Login";
+import React, { useEffect, useState } from "react";
+import { Login } from "../../components/Auth/Login/Login";
 import logo from "images/cm-logo.png";
 import mainImg from "images/cm-main-img.png";
 import copyImg from "images/copy-icon.png";
-import { SignUp } from "../../components/SignUp/SignUp";
+import { SignUp } from "../../components/Auth/SignUp/SignUp";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -14,9 +15,32 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const Auth = () => {
+const AuthTabsController = ({ showLogin, setShowLogin }) => (
+  <ul className="sign-control">
+    <li className={showLogin ? "current" : ""}>
+      <a href="#" onClick={() => setShowLogin(true)}>
+        Sign in
+      </a>
+    </li>
+    <li className={!showLogin ? "current" : ""}>
+      <a href="#" onClick={() => setShowLogin(false)}>
+        Sign up
+      </a>
+    </li>
+  </ul>
+);
+
+export const Auth = ({ user }) => {
   const classes = useStyles();
-  const [showLogin, setShowLogin] = useState(true);
+  const navigate = useNavigate();
+  const [showLogin, setShowLogin] = useState(false);
+
+  useEffect(() => {
+    if (user) {
+      navigate(-1);
+    }
+  }, [user]);
+
   return (
     <Box className={classes.root}>
       <div className="sign-in-page">
@@ -37,8 +61,21 @@ export const Auth = () => {
                 </div>
               </div>
               <div className="col-lg-6">
-                {showLogin && <Login />}
-                {!showLogin && <SignUp />}
+                {showLogin ? (
+                  <Login>
+                    <AuthTabsController
+                      showLogin={showLogin}
+                      setShowLogin={setShowLogin}
+                    />
+                  </Login>
+                ) : (
+                  <SignUp>
+                    <AuthTabsController
+                      showLogin={showLogin}
+                      setShowLogin={setShowLogin}
+                    />
+                  </SignUp>
+                )}
               </div>
             </div>
           </div>

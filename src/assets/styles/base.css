@@ -2152,7 +2152,7 @@ select {
 	width: 100%;
 	text-align: right;
 	padding-right: 50px;
-	margin-bottom: 70px;
+	margin-bottom: 30px;
 }
 .sign-control li {
 	display: inline-block;
@@ -2187,7 +2187,6 @@ select {
 	width: 100%;
 	padding-right: 75px;
 	padding-left: 60px;
-	display: none;
 }
 .sign_in_sec.current {
 	display: block;
