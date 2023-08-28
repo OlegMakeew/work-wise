@@ -1,8 +1,8 @@
-import { doc, onSnapshot } from "firebase/firestore";
+import { addDoc, collection, doc, onSnapshot } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { firestore } from "../firebase/config";
 
-export const useDocument = (collectionName, id) => {
+export const getDocumentRealTime = (collectionName, id) => {
   const [document, setDocument] = useState(null);
   const [error, setError] = useState(null);
 
@@ -28,4 +28,14 @@ export const useDocument = (collectionName, id) => {
   }, [collectionName, id]);
 
   return { document, error };
+};
+
+export const addDocument = async (collectionName, newDoc) => {
+  const collectionRef = collection(firestore, collectionName);
+
+  try {
+    return await addDoc(collectionRef, newDoc);
+  } catch (err) {
+    return err.message;
+  }
 };
