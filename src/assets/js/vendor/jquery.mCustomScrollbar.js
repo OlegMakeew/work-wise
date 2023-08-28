@@ -861,17 +861,17 @@ and dependencies (minified).
 		/* generates plugin markup */
 		_pluginMarkup=function(){
 			var $this=$(this),d=$this.data(pluginPfx),o=d.opt,
-				expandClass=o.autoExpandScrollbar ? " "+classes[1]+"_expand" : "",
-				scrollbar=["<div id='mCSB_"+d.idx+"_scrollbar_vertical' class='mCSB_scrollTools mCSB_"+d.idx+"_scrollbar mCS-"+o.theme+" mCSB_scrollTools_vertical"+expandClass+"'><div class='"+classes[12]+"'><div id='mCSB_"+d.idx+"_dragger_vertical' class='mCSB_dragger' style='position:absolute;'><div class='mCSB_dragger_bar' /></div><div class='mCSB_draggerRail' /></div></div>","<div id='mCSB_"+d.idx+"_scrollbar_horizontal' class='mCSB_scrollTools mCSB_"+d.idx+"_scrollbar mCS-"+o.theme+" mCSB_scrollTools_horizontal"+expandClass+"'><div class='"+classes[12]+"'><div id='mCSB_"+d.idx+"_dragger_horizontal' class='mCSB_dragger' style='position:absolute;'><div class='mCSB_dragger_bar' /></div><div class='mCSB_draggerRail' /></div></div>"],
-				wrapperClass=o.axis==="yx" ? "mCSB_vertical_horizontal" : o.axis==="x" ? "mCSB_horizontal" : "mCSB_vertical",
+				expandclassName=o.autoExpandScrollbar ? " "+classes[1]+"_expand" : "",
+				scrollbar=["<div id='mCSB_"+d.idx+"_scrollbar_vertical' className='mCSB_scrollTools mCSB_"+d.idx+"_scrollbar mCS-"+o.theme+" mCSB_scrollTools_vertical"+expandClass+"'><div className='"+classes[12]+"'><div id='mCSB_"+d.idx+"_dragger_vertical' className='mCSB_dragger' style='position:absolute;'><div className='mCSB_dragger_bar' /></div><div className='mCSB_draggerRail' /></div></div>","<div id='mCSB_"+d.idx+"_scrollbar_horizontal' className='mCSB_scrollTools mCSB_"+d.idx+"_scrollbar mCS-"+o.theme+" mCSB_scrollTools_horizontal"+expandClass+"'><div className='"+classes[12]+"'><div id='mCSB_"+d.idx+"_dragger_horizontal' className='mCSB_dragger' style='position:absolute;'><div className='mCSB_dragger_bar' /></div><div className='mCSB_draggerRail' /></div></div>"],
+				wrapperclassName=o.axis==="yx" ? "mCSB_vertical_horizontal" : o.axis==="x" ? "mCSB_horizontal" : "mCSB_vertical",
 				scrollbars=o.axis==="yx" ? scrollbar[0]+scrollbar[1] : o.axis==="x" ? scrollbar[1] : scrollbar[0],
-				contentWrapper=o.axis==="yx" ? "<div id='mCSB_"+d.idx+"_container_wrapper' class='mCSB_container_wrapper' />" : "",
-				autoHideClass=o.autoHideScrollbar ? " "+classes[6] : "",
-				scrollbarDirClass=(o.axis!=="x" && d.langDir==="rtl") ? " "+classes[7] : "";
+				contentWrapper=o.axis==="yx" ? "<div id='mCSB_"+d.idx+"_container_wrapper' className='mCSB_container_wrapper' />" : "",
+				autoHideclassName=o.autoHideScrollbar ? " "+classes[6] : "",
+				scrollbarDirclassName=(o.axis!=="x" && d.langDir==="rtl") ? " "+classes[7] : "";
 			if(o.setWidth){$this.css("width",o.setWidth);} /* set element width */
 			if(o.setHeight){$this.css("height",o.setHeight);} /* set element height */
 			o.setLeft=(o.axis!=="y" && d.langDir==="rtl") ? "989999px" : o.setLeft; /* adjust left position for rtl direction */
-			$this.addClass(pluginNS+" _"+pluginPfx+"_"+d.idx+autoHideClass+scrollbarDirClass).wrapInner("<div id='mCSB_"+d.idx+"' class='mCustomScrollBox mCS-"+o.theme+" "+wrapperClass+"'><div id='mCSB_"+d.idx+"_container' class='mCSB_container' style='position:relative; top:"+o.setTop+"; left:"+o.setLeft+";' dir='"+d.langDir+"' /></div>");
+			$this.addClass(pluginNS+" _"+pluginPfx+"_"+d.idx+autoHideClass+scrollbarDirClass).wrapInner("<div id='mCSB_"+d.idx+"' className='mCustomScrollBox mCS-"+o.theme+" "+wrapperClass+"'><div id='mCSB_"+d.idx+"_container' className='mCSB_container' style='position:relative; top:"+o.setTop+"; left:"+o.setLeft+";' dir='"+d.langDir+"' /></div>");
 			var mCustomScrollBox=$("#mCSB_"+d.idx),
 				mCSB_container=$("#mCSB_"+d.idx+"_container");
 			if(o.axis!=="y" && !o.advanced.autoExpandHorizontalScroll){
@@ -921,7 +921,7 @@ and dependencies (minified).
 					We must let the browser set the width as browser zoom values are impossible to calculate.
 					*/
 					mCSB_container.css({"overflow-x":"inherit","position":"absolute"})
-						.wrap("<div class='mCSB_h_wrapper' style='position:relative; left:0; width:999999px;' />")
+						.wrap("<div className='mCSB_h_wrapper' style='position:relative; left:0; width:999999px;' />")
 						.css({ /* set actual width, original position and un-wrap */
 							/* 
 							get the exact width (with decimals) and then round-up. 
@@ -943,10 +943,10 @@ and dependencies (minified).
 				mCSB_scrollTools=$(".mCSB_"+d.idx+"_scrollbar:first"),
 				tabindex=!_isNumeric(o.scrollButtons.tabindex) ? "" : "tabindex='"+o.scrollButtons.tabindex+"'",
 				btnHTML=[
-					"<a href='#' class='"+classes[13]+"' "+tabindex+" />",
-					"<a href='#' class='"+classes[14]+"' "+tabindex+" />",
-					"<a href='#' class='"+classes[15]+"' "+tabindex+" />",
-					"<a href='#' class='"+classes[16]+"' "+tabindex+" />"
+					"<a href='#' className='"+classes[13]+"' "+tabindex+" />",
+					"<a href='#' className='"+classes[14]+"' "+tabindex+" />",
+					"<a href='#' className='"+classes[15]+"' "+tabindex+" />",
+					"<a href='#' className='"+classes[16]+"' "+tabindex+" />"
 				],
 				btn=[(o.axis==="x" ? btnHTML[2] : btnHTML[0]),(o.axis==="x" ? btnHTML[3] : btnHTML[1]),btnHTML[2],btnHTML[3]];
 			if(o.scrollButtons.enable){
@@ -996,7 +996,7 @@ and dependencies (minified).
 		
 		/* toggles scrolling classes */
 		_onDragClasses=function(el,action,xpnd){
-			var expandClass=xpnd ? classes[0]+"_expanded" : "",
+			var expandclassName=xpnd ? classes[0]+"_expanded" : "",
 				scrollbar=el.closest(".mCSB_scrollTools");
 			if(action==="active"){
 				el.toggleClass(classes[0]+" "+expandClass); scrollbar.toggleClass(classes[1]); 
@@ -1666,7 +1666,7 @@ and dependencies (minified).
 			}).bind("mousedown."+namespace+" touchstart."+namespace+" pointerdown."+namespace+" MSPointerDown."+namespace+" mouseup."+namespace+" touchend."+namespace+" pointerup."+namespace+" MSPointerUp."+namespace+" mouseout."+namespace+" pointerout."+namespace+" MSPointerOut."+namespace+" click."+namespace,function(e){
 				e.preventDefault();
 				if(!_mouseBtnLeft(e)){return;} /* left mouse button only */
-				var btnClass=$(this).attr("class");
+				var btnclassName=$(this).attr("class");
 				seq.type=o.scrollButtons.scrollType;
 				switch(e.type){
 					case "mousedown": case "touchstart": case "pointerdown": case "MSPointerDown":

@@ -1,5 +1,6 @@
 import { Timestamp } from "firebase/firestore";
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { addDocument } from "../../hooks/useDocument";
 
 const styles = {
@@ -15,6 +16,7 @@ const styles = {
 };
 
 export const CreateJobPopup = () => {
+  const user = useSelector((state) => state.user);
   const [job, setJob] = useState({
     title: "",
     role: "Разработчик",
@@ -51,9 +53,8 @@ export const CreateJobPopup = () => {
       ...job,
       createdAt: Timestamp.fromDate(new Date()),
       author: {
-        name: "Ислам",
-        photoURL:
-          "https://static.kulturologia.ru/files/u18046/dulatov-bro-13.jpg",
+        name: user.displayName,
+        photoURL: user.photoURL,
       },
       comments: [],
       likes: [],

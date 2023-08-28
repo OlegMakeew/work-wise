@@ -2,8 +2,10 @@ import React from "react";
 import logo from "@/assets/images/logo.png";
 import { UserAccount } from "./UserAccount/UserAccount";
 import { Nav } from "./Nav/Nav";
+import { useSelector } from "react-redux";
 
 export const Header = () => {
+  const { user } = useSelector(({ auth }) => auth);
   return (
     <header>
       <div className="container">
@@ -21,13 +23,13 @@ export const Header = () => {
               </button>
             </form>
           </div>
-          <Nav />
+          <Nav user={user}/>
           <div className="menu-btn">
             <a href="#" title="">
               <i className="fa fa-bars"></i>
             </a>
           </div>
-          <UserAccount />
+          {user && <UserAccount />}
         </div>
       </div>
     </header>

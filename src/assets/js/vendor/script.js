@@ -31,26 +31,6 @@ $(window).on("load", function() {
 
     //  ============= SIGNIN CONTROL FUNCTION =========
 
-    $('.sign-control li').on("click", function(){
-        var tab_id = $(this).attr('data-tab');
-        $('.sign-control li').removeClass('current');
-        $('.sign_in_sec').removeClass('current');
-        $(this).addClass('current animated fadeIn');
-        $("#"+tab_id).addClass('current animated fadeIn');
-        return false;
-    });
-
-    //  ============= SIGNIN TAB FUNCTIONALITY =========
-
-    $('.signup-tab ul li').on("click", function(){
-        var tab_id = $(this).attr('data-tab');
-        $('.signup-tab ul li').removeClass('current');
-        $('.dff-tab').removeClass('current');
-        $(this).addClass('current animated fadeIn');
-        $("#"+tab_id).addClass('current animated fadeIn');
-        return false;
-    });
-
     //  ============= SIGNIN SWITCH TAB FUNCTIONALITY =========
 
     $('.tab-feed ul li').on("click", function(){
@@ -266,8 +246,8 @@ $(".user-info").on("click", function(){$("#users").hide();
         slidesToShow: 3,
         slck:true,
         slidesToScroll: 1,
-        prevArrow:'<span class="slick-previous"></span>',
-        nextArrow:'<span class="slick-nexti"></span>',
+        prevArrow:'<span className="slick-previous"></span>',
+        nextArrow:'<span className="slick-nexti"></span>',
         autoplay: true,
         dots: false,
         autoplaySpeed: 2000,
